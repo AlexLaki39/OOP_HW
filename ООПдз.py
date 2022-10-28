@@ -18,7 +18,8 @@ class Mentor:
         self.courses_attached = []
 
     def rate_hw(self, student, course, grade):
-        if isinstance(student, Student) a![](../../../0737~1/AppData/Local/Temp/10вопрос.jpg)nd course in self.courses_attached and course in student.courses_in_progress:
+        if isinstance(student, Student) and course in self.courses_attached \
+                and course in student.courses_in_progress:
             if course in student.grades:
                 student.grades[course] += [grade]
             else:
@@ -27,11 +28,17 @@ class Mentor:
             return 'Ошибка'
 
 
+class Lector(Mentor):
+    pass
+
+
+class Reviewer(Mentor):
+    pass
+
 
 best_student = Student('Roy', 'Eman', 'your_gender')
 best_student.finished_courses += ['Git']
 best_student.courses_in_progress += ['Python']
-
 
 print(best_student.finished_courses)
 print(best_student.courses_in_progress)
@@ -40,7 +47,6 @@ print(best_student.grades)
 cool_mentor = Mentor('Olga', 'Petrova')
 cool_mentor.courses_attached += ['Python']
 print(cool_mentor.courses_attached)
-
 
 cool_mentor.rate_hw(best_student, 'Python', 10)
 cool_mentor.rate_hw(best_student, 'Python', 10)
