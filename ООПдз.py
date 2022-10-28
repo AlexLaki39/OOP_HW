@@ -89,7 +89,8 @@ class Reviewer(Mentor):
     def __str__(self):
         res = f'Имя: {self.name}\nФамилия: {self.surname}'
         return res
-# _______________________________________________________________________________
+
+
 student_1 = Student('Olga', 'Petrova', 'F')
 student_1.finished_courses += ['Git']
 student_1.courses_in_progress += ['Python']
@@ -130,3 +131,33 @@ print(reviewer_1, reviewer_2, student_1, student_2, lecturer_1, lecturer_2, sep=
 
 print(student_1 > student_2)
 print(lecturer_1 == lecturer_2)
+
+list_students = [student_1, student_2]
+list_lecturers = [lecturer_1, lecturer_2]
+
+
+def course_avrg_grade_st(lst_std, course):
+    lst = []
+    for person in lst_std:
+        for key, value in person.grades.items():
+            if key == course:
+                for item in value:
+                    lst.append(item)
+    r = sum(lst) / len(lst)
+    print(f'Средняя оценка по студентам за дз по курсу {course}: {round(r, 2)}')
+
+
+def lecture_avrg_grade_lct(lst_lct, course):
+    lst = []
+    for person in lst_lct:
+        for key, value in person.grades.items():
+            if key == course:
+                for item in value:
+                    lst.append(item)
+    r = sum(lst) / len(lst)
+    print(f'Средняя оценка по лекторам за лекции по курсу {course}: {round(r, 2)}')
+
+
+course_avrg_grade_st(list_students, 'Python')
+
+lecture_avrg_grade_lct(list_lecturers, 'Django')
