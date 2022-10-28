@@ -36,6 +36,12 @@ class Student:
               f'\nЗавершенные курсы: {", ".join(self.finished_courses)}'
         return res
 
+    def __lt__(self, other):
+        if not isinstance(other, Student):
+            print('Такого студента нет!')
+            return
+        return self._average_grade_hw() < other._average_grade_hw()
+
 
 class Mentor:
     def __init__(self, name, surname):
@@ -78,4 +84,9 @@ class Reviewer(Mentor):
         res = f'Имя: {self.name}\nФамилия: {self.surname}'
         return res
 
+    def __lt__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Такого преподавателя нет!')
+            return
+        return self._average_grade_lc() < other._average_grade_lc()
 
