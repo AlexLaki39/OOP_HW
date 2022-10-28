@@ -21,6 +21,21 @@ class Student:
         else:
             return 'Ошибка'
 
+    def _average_grade_hw(self):
+        list = []
+        for value in self.grades.values():
+            for item in value:
+               list.append(item)
+        avrg = sum(list) / len(list)
+        return avrg
+
+    def __str__(self):
+        res = f'Имя: {self.name}\nФамилия: {self.surname}' \
+              f'\nСредняя оценка за домашние задания: {self._average_grade_hw()}' \
+              f'\nКурсы в процессе изучения: {", ".join(self.courses_in_progress)}' \
+              f'\nЗавершенные курсы: {", ".join(self.finished_courses)}'
+        return res
+
 
 class Mentor:
     def __init__(self, name, surname):
@@ -34,6 +49,19 @@ class Lecturer(Mentor):
         super().__init__(name, surname)
         self.grades = {}
 
+    def _average_grade_lc(self):
+        list = []
+        for value in self.grades.values():
+            for item in value:
+               list.append(item)
+        avrg = sum(list) / len(list)
+        return avrg
+
+    def __str__(self):
+        res = f'Имя: {self.name}\nФамилия: {self.surname}' \
+              f'\nСредняя оценка за лекции: {self._average_grade_lc()} '
+        return res
+
 
 class Reviewer(Mentor):
     def rate_hw(self, student, course, grade):
@@ -46,38 +74,8 @@ class Reviewer(Mentor):
         else:
             return 'Ошибка'
 
+    def __str__(self):
+        res = f'Имя: {self.name}\nФамилия: {self.surname}'
+        return res
 
-# best_student = Student('Roy', 'Eman', 'your_gender')
-# best_student.finished_courses += ['Git']
-# best_student.courses_in_progress += ['Python',]
-#
-# print(best_student.finished_courses)
-# print(best_student.courses_in_progress)
-# print(best_student.grades)
-# print('1' * 10)
-#
-# cool_lecturer = Lecturer('Olga', 'Petrova')
-# cool_lecturer.courses_attached += ['Python']
-# cool_lecturer.courses_attached += ['Git']
-# print(cool_lecturer.courses_attached)
-# print('2' * 10)
-#
-# cool_reviewer = Reviewer('Vova', 'Topov')
-# cool_reviewer.courses_attached += ['Python']
-# cool_reviewer.rate_hw(best_student, 'Python', 10)
-# cool_reviewer.rate_hw(best_student, 'Python', 10)
-# cool_reviewer.rate_hw(best_student, 'Python', 10)
-#
-# print(best_student.grades)
-# print(cool_reviewer.__dict__)
-# print('3' * 10)
-#
-# print(best_student.grades)
-# print('4' * 10)
-#
-# best_student.rate_lc(cool_lecturer, 'Python', 5)
-# print(cool_lecturer.grades)
-# best_student.rate_lc(cool_lecturer, 'Git', 8)
-#
-# print(cool_lecturer.grades)
-# print(cool_lecturer.__dict__)
+
