@@ -1,4 +1,5 @@
 class Student:
+    student_obj = []
     def __init__(self, name, surname, gender):
         self.name = name
         self.surname = surname
@@ -6,6 +7,7 @@ class Student:
         self.finished_courses = []
         self.courses_in_progress = []
         self.grades = {}
+        Student.student_obj.append(self)
 
     def add_courses(self, course_name):
         self.finished_courses.append(course_name)
@@ -51,9 +53,11 @@ class Mentor:
 
 
 class Lecturer(Mentor):
+    lecturer_obj = []
     def __init__(self, name, surname):
         super().__init__(name, surname)
         self.grades = {}
+        Lecturer.lecturer_obj.append(self)
 
     def _average_grade_lc(self):
         list_1 = []
@@ -132,9 +136,6 @@ print(reviewer_1, reviewer_2, student_1, student_2, lecturer_1, lecturer_2, sep=
 print(student_1 > student_2)
 print(lecturer_1 == lecturer_2)
 
-list_students = [student_1, student_2]
-list_lecturers = [lecturer_1, lecturer_2]
-
 
 def course_avrg_grade_st(lst_std, course):
     lst = []
@@ -158,6 +159,6 @@ def lecture_avrg_grade_lct(lst_lct, course):
     print(f'Средняя оценка по лекторам за лекции по курсу {course}: {round(r, 2)}')
 
 
-course_avrg_grade_st(list_students, 'Python')
+course_avrg_grade_st(Student.student_obj, 'Python')
 
-lecture_avrg_grade_lct(list_lecturers, 'Django')
+lecture_avrg_grade_lct(Lecturer.lecturer_obj, 'Django')
